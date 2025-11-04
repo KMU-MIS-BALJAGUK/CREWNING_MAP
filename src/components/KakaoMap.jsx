@@ -33,7 +33,7 @@ const seoulGuCoords = {
   강동구: { lat: 37.55045024, lng: 127.1470118 },
 };
 
-const COLORS = ['#fde0dd','#fdd0a2','#fdae6b','#fd8d3c','#e6550d','#a63603'];
+const COLORS = ['#e8f5ff', '#d4edff', '#c0e5ff', '#acceff', '#98c6ff', '#84beff'];
 
 function getFillColor(name) {
   if (!name) return '#fff';
@@ -227,8 +227,14 @@ const KakaoMap = () => {
           strokeColor={'#004c80'}
           strokeOpacity={0.9}
           fillColor={getFillColor(poly.name)}
-          fillOpacity={0.45}
+          fillOpacity={1}
         />
+      ))}
+
+      {Object.entries(seoulGuCoords).map(([guName, position]) => (
+        <CustomOverlayMap key={guName} position={position} yAnchor={0.5}>
+          <div className="gu-label">{guName}</div>
+        </CustomOverlayMap>
       ))}
 
       {/* 1등 크루 오버레이 */}
